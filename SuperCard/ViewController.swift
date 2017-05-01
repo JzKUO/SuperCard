@@ -13,6 +13,15 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.initAll()
+	}
+
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+
+	func initAll() -> Void {
 		self.deck.initDeck()
 
 		for card in self.deck.getCards() {
@@ -24,11 +33,6 @@ class ViewController: UIViewController {
 		self.drawCard(card: self.deck.getCards()[0])
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
 	func swipeCard() -> Void {
 		if self.deck.getCards().count > 0 {
 			if self.deck.isCardFront(at: 0) {
@@ -36,9 +40,10 @@ class ViewController: UIViewController {
 				print(self.deck.getCards().count)
 				if self.deck.getCards().count > 0 {
 					self.drawCard(card: self.deck.getCards()[0])
+				} else {
+					self.initAll()
 				}
-			}
-			else {
+			} else {
 				self.deck.getCards()[0].flipToFront()
 			}
 		}

@@ -12,22 +12,21 @@ class Deck: NSObject {
 	private var _cards: Array<Card> = []
 	private let _cardValueSets = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 	private let _cardSuitSets = ["♣", "♦", "♥", "♠"]
-	
+
 	public func initDeck() -> Void {
 		for value in self._cardValueSets {
-			for suit in self._cardSuitSets {
+			let card = Card()
+			let random = Int(arc4random_uniform(4))
+			let suit = self._cardSuitSets[random]
 
-				let card = Card()
-
-				if suit == "♥" || suit == "♦" {
-					card.initCard(value: value + suit, color: "red")
-				} else {
-					card.initCard(value: value + suit, color: "black")
-				}
-
-				card.flipToBack()
-				self._cards.append(card)
+			if suit == "♥" || suit == "♦" {
+				card.initCard(value: value + suit, color: "red")
+			} else {
+				card.initCard(value: value + suit, color: "black")
 			}
+
+			card.flipToBack()
+			self._cards.append(card)
 		}
 	}
 
