@@ -16,7 +16,7 @@ class Deck: NSObject {
 	public func initDeck() -> Void {
 		for value in self._cardValueSets {
 			let card = Card()
-			let random = Int(arc4random_uniform(4))
+			let random = Int(arc4random_uniform(UInt32(self._cardSuitSets.count)))
 			let suit = self._cardSuitSets[random]
 
 			if suit == "♥" || suit == "♦" {
